@@ -1,25 +1,25 @@
-//W.A.J.Script for Locating links by linkText() and partialLinkText()
+//W.A.J. script to use different methods to manage the windows-alerts and pop ups.
 package com.selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class LocateLink {
+public class AlertAndPopup {
 	public static void main(String[] args) throws InterruptedException {
 		System.setProperty("webdriver.edge.driver", "C:\\Users\\jgpatel\\Desktop\\Automation\\edgedriver_win64\\msedgedriver.exe");
 		WebDriver driver = new EdgeDriver();
-		driver.get("https://www.facebook.com/");
+		driver.get("https://demo.automationtesting.in/Alerts.html");
 		driver.manage().window().maximize();
 		Thread.sleep(2000);
 		
-		//Link Text
-		driver.findElement(By.linkText("Forgotten password?")).click();
+		driver.findElement(By.linkText("Alert with OK & Cancel")).click();
 		Thread.sleep(5000);
 		
-		//Partial Link Text
-		driver.findElement(By.partialLinkText("For")).click();
-		Thread.sleep(10000);
+		driver.findElement(By.cssSelector("button[onclick='confirmbox()']")).click();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(2000);
 		
 		driver.quit();
 	}
